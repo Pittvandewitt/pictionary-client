@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
+import SignupFormContainer from './components/SignupFormContainer';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        Pictionary
-      </div>
+      <BrowserRouter>
+        <div>
+          Pictionary
+        <Route path="/signup" component={SignupFormContainer} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
