@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SignupForm from './SignupForm'
-import { url } from '../constants'
+import { baseURL } from '../constants'
 import * as request from 'superagent'
 
 export const initialState = {
@@ -19,7 +19,7 @@ export default class SignupFormContainer extends Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-    request.post(`${url}/signup`)
+    request.post(`${baseURL}/signup`)
       .send(this.state)
       .then(request => console.log(request))
       .catch(console.error)
