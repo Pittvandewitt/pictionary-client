@@ -5,8 +5,29 @@ import SignupFormContainer from './components/SignupFormContainer';
 import LoginFormContainer from './components/LoginFormContainer';
 import Logout from './components/Logout';
 import { connect } from 'react-redux'
+import { USER_LOGIN } from './actions/userActions'
 
 class App extends Component {
+
+  componentCleanup = () => {
+    localStorage.setItem('someSavedState', JSON.stringify(this.props.user))
+  }
+
+  componentDidMount() {
+    window.addEventListener('beforeunload', this.componentCleanup)
+
+    const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
+    rehydrate.jwt && this.props.dispatch({
+      type: USER_LOGIN,
+      payload: rehydrate
+    })
+  }
+
+  componentWillUnmount() {
+    this.componentCleanup()
+    window.removeEventListener('beforeunload', this.componentCleanup)
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -22,7 +43,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (props) => {
-  return {user: props.user}
+  return { user: props.user }
 }
 
 export default connect(mapStateToProps)(App);
