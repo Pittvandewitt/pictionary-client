@@ -3,6 +3,7 @@ import { baseURL } from '../constants';
 
 export const SET_ERROR = 'SET_ERROR';
 export const USER_LOGIN = 'USER_LOGIN';
+export const USER_LOGOUT = 'USER_LOGOUT';
 export const login = (data) => {
     return (dispatch) => {
         request.post(`${baseURL}/login`)
@@ -21,4 +22,10 @@ export const login = (data) => {
                 })
             })
     }
+}
+
+export const logout = () => {
+  return {
+    type: USER_LOGOUT
+  }
 }
