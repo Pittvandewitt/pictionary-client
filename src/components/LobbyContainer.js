@@ -21,13 +21,6 @@ class LobbyContainer extends Component {
     })
   }
 
-  onClick = (event) => {
-    // enter a room
-    console.log('enterRoom', event.target)
-    {/* add router with /roomname endpoint */ }
-    // router.
-  }
-
   onSubmit = (event) => {
     event.preventDefault()
 
@@ -48,7 +41,6 @@ class LobbyContainer extends Component {
       <Lobby
         rooms={this.state.rooms}
         roomName={this.state.roomName}
-        onClick={this.onClick}
         onChange={this.onChange}
         onSubmit={this.onSubmit} />
     </div>

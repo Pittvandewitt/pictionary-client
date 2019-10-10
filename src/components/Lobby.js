@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Lobby(props) {
-  const { onSubmit, onChange, onClick, roomName, rooms } = props
+  const { onSubmit, onChange, roomName, rooms } = props
 
   return <div>
     <h2>Lobby</h2>
@@ -14,7 +15,7 @@ export default function Lobby(props) {
       <button type='submit'>Create new room</button>
     </form>
     <div>
-      {rooms.map(room => <button key={room.name} onClick={onClick}>{room.name}</button>)}
+      {rooms.map(room => <Link key={room.id} to={`/gameRoom/${room.name}`}>{room.name}</Link>)}
     </div>
   </div>
 }
