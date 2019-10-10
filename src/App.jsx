@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { USER_LOGIN } from './actions/userActions'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import SignupFormContainer from './components/SignupFormContainer';
 import LoginFormContainer from './components/LoginFormContainer';
 import Logout from './components/Logout';
-import { connect } from 'react-redux'
-import { USER_LOGIN } from './actions/userActions'
 import LobbyContainer from './components/LobbyContainer';
 
 class App extends Component {
 
   componentCleanup = () => {
-    localStorage.setItem('someSavedState', JSON.stringify(this.props.user))
+    localStorage.setItem('userLogin', JSON.stringify(this.props.user))
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     window.addEventListener('beforeunload', this.componentCleanup)
 
-    const rehydrate = JSON.parse(localStorage.getItem('someSavedState'))
+    const rehydrate = JSON.parse(localStorage.getItem('userLogin'))
     rehydrate.jwt && this.props.dispatch({
       type: USER_LOGIN,
       payload: rehydrate
@@ -30,17 +30,21 @@ class App extends Component {
   }
 
   render() {
-    return (
+    return <div>
       <BrowserRouter>
-        <div>
-          <h2>Pictionary</h2>
+        <nav>
           {this.props.user.jwt && <Logout />}
-          {this.props.user.jwt && <Route path="/" component={LobbyContainer} />}
-          {!this.props.user.jwt && <Route path="/" component={LoginFormContainer} />}
-          {!this.props.user.jwt && <Route path="/" component={SignupFormContainer} />}
-        </div>
+          {!this.props.user.jwt && <Route path="/signup" component={SignupFormContainer} />}
+          <Route path="/login" component={LoginFormContainer} />
+          <Route path="/gameroom/:name" />
+        </nav>
+
+        {this.props.user.jwt ?
+          <Route exact path="/" component={LobbyContainer} /> : 
+          <Redirect to='/signup' />}
       </BrowserRouter>
-    );
+
+    </div>
   }
 }
 

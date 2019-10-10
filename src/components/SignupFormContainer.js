@@ -21,18 +21,27 @@ export default class SignupFormContainer extends Component {
     event.preventDefault()
     request.post(`${baseURL}/signup`)
       .send(this.state)
-      .then(request => console.log(request))
+      .then(request => {
+        if (request.statusCode === 200)
+          this.props.history.push('/login');
+        return console.log(request)
+      })
       .catch(console.error)
     this.setState(initialState)
+  }
+
+  onClick = () => {
+    this.props.history.push('/login')
   }
 
   render() {
     return (
       <div>
         <SignupForm
-         onChange={this.onChange} 
-         state={this.state}
-         onSubmit={this.onSubmit} />
+          onChange={this.onChange}
+          state={this.state}
+          onSubmit={this.onSubmit} />
+          <button onClick={this.onClick}>Log in</button>
       </div>
     )
   }

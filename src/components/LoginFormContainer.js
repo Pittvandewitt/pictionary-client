@@ -5,41 +5,40 @@ import { login } from '../actions/userActions';
 import LoginForm from './LoginForm';
 
 class LoginFormContainer extends Component {
-    state = {
-        email: '',
-        password: ''
-    }
+  state = {
+    email: '',
+    password: ''
+  }
 
-    onSubmit = (event) => {
-        event.preventDefault();
-        this.props.login(this.state);
-    }
+  onSubmit = (event) => {
+    event.preventDefault();
+    this.props.login(this.state);
+  }
 
-    onChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    }
+  onChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
 
-    render() { 
-        return (
-            (this.props.user.jwt) ? 
-                <Redirect to="/" /> 
-            : 
-                <LoginForm 
-                    values={this.state}
-                    onChange={this.onChange}
-                    onSubmit={this.onSubmit}
-                    user={this.props.user}
-                />
-        );
-    }
+  render() {
+    return (
+      this.props.user.jwt ?
+        <Redirect to="/" />:
+        <LoginForm
+          values={this.state}
+          onChange={this.onChange}
+          onSubmit={this.onSubmit}
+          user={this.props.user}
+        />
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    }
+  return {
+    user: state.user
+  }
 }
- 
-export default connect(mapStateToProps, { login })(LoginFormContainer);
+
+export default connect(mapStateToProps, { login })(LoginFormContainer)
