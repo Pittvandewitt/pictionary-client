@@ -24,13 +24,14 @@ class LoginFormContainer extends Component {
   render() {
     return (
       this.props.user.jwt ?
-        <Redirect to="/" />:
-        <LoginForm
-          values={this.state}
-          onChange={this.onChange}
-          onSubmit={this.onSubmit}
-          user={this.props.user}
-        />
+        <Redirect to="/" /> :
+        <div>
+          <LoginForm
+            values={this.state}
+            onChange={this.onChange}
+            onSubmit={this.onSubmit}
+            user={this.props.user} />
+        </div>
     );
   }
 }
