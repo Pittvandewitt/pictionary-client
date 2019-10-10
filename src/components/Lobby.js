@@ -14,8 +14,8 @@ export default function Lobby(props) {
         onChange={onChange} />
       <button type='submit'>Create new room</button>
     </form>
-    <div>
-      {rooms.map(room => <Link key={room.id} to={`/gameRoom/${room.name}`}>{room.name}</Link>)}
-    </div>
+    <ul>
+      {rooms.map(room => <li><Link key={room.id} to={`/gameRoom/${room.name}`}>{room.name}</Link></li>)}
+    </ul>
   </div>
 }
