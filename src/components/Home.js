@@ -1,47 +1,17 @@
 import React, { Component } from 'react'
-import { Button, Container } from '@material-ui/core';
-import useStyles from '../styles'
 import './Home.css';
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux';
 
-export default class Home extends Component {
-
-  login = () => {
-    this.props.history.push('/login')
-  }
-
-  signup = () => {
-    this.props.history.push('/signup')
-  }
+class Home extends Component {
 
   render() {
-    const classes = this.props.classes;
-    return <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <Button
-          onClick={this.signup}
-          fullWidth
-          variant="contained"
-          color="primary"
-          style={{marginTop: "24px"}}
-          className={classes.button}>Sign up</Button>
-        <Button
-          onClick={this.login}
-          fullWidth
-          variant="contained"
-          color="primary"
-          margin="normal"
-          style={{marginTop: "24px"}}
-          className={classes.button}>Log in</Button>
-      </div>
-    </Container>
+    return this.props.user.jwt ? <Redirect to='/' /> : <Redirect to='/signup' />
   }
 }
 
-function withStyles(Component) {
-  return function WrappedComponent(props) {
-    const classes = useStyles();
-    return <Component {...props} classes={classes} />;
-  }
+const mapStateToProps = (props) => {
+  return { user: props.user }
 }
 
-Home = withStyles(Home)
+export default connect(mapStateToProps)(Home)
