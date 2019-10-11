@@ -36,13 +36,11 @@ class App extends Component {
     const classes = this.props.classes;
     return <div className={!this.props.user.jwt && 'css'}>
       <BrowserRouter>
-        <div position="fixed">
-          <AppBar className={classes.root}>
-            <Toolbar>
-              {this.props.user.jwt ? <Logout /> : <Login />}
-            </Toolbar>
-          </AppBar>
-        </div>
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar>
+            {this.props.user.jwt ? <Logout /> : <Login />}
+          </Toolbar>
+        </AppBar>
 
         <Route path="/login" component={LoginFormContainer} />
         <Route path="/signup" component={SignupFormContainer} />

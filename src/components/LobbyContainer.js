@@ -37,13 +37,11 @@ class LobbyContainer extends Component {
   }
 
   render() {
-    return <div>
-      <Lobby
-        rooms={this.state.rooms}
-        roomName={this.state.roomName}
-        onChange={this.onChange}
-        onSubmit={this.onSubmit} />
-    </div>
+    return <Lobby
+      rooms={this.state.rooms}
+      roomName={this.state.roomName}
+      onChange={this.onChange}
+      onSubmit={this.onSubmit} />
   }
 }
 
