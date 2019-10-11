@@ -9,3 +9,7 @@
 #root, body, html {
   min-height: 100vh;
 }
+
+canvas {
+  border: 1px solid #000000
+}

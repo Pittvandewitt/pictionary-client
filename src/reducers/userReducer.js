@@ -4,7 +4,8 @@ const initialState = {
   jwt: null,
   userId: null,
   username: null,
-  error: null
+  error: null,
+  drawer: false
 }
 
 export default (state = initialState, action = {}) => {
@@ -15,6 +16,8 @@ export default (state = initialState, action = {}) => {
       return { ...state, ...action.payload };
     case USER_LOGOUT:
       return initialState
+      case 'SET_DRAWER':
+        return {...state, drawer: action.payload}
     default:
       return state;
   }

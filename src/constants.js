@@ -1,3 +1,3 @@
 import socketIOClient from 'socket.io-client';
-export const socket = socketIOClient("http://localhost:4000");
-export const baseURL = 'http://localhost:4000';
+export const socket = socketIOClient("https://lit-eyrie-77789.herokuapp.com");
+export const baseURL = 'https://lit-eyrie-77789.herokuapp.com';
