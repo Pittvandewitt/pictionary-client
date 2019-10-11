@@ -96,7 +96,7 @@ class Whiteboard extends Component {
         height={height}
       />
       }
-      <button onClick={this.clearCanvas}>Clear</button>
+      {/* <button onClick={this.clearCanvas}>Clear</button> */}
       </React.Fragment>
     )
   }
