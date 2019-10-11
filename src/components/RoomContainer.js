@@ -64,8 +64,8 @@ class RoomContainer extends Component {
         <div className="gameMsg" ref="gameMsg" style={{padding: "10px 0"}}></div>
         <Whiteboard />
       </div>
-      <div className="right" style={{ width: "350px", overflow: "scroll", backgroundColor: "#f00" }}>
-        <div className="chatMessagesContainer" style={{ height: "calc(100% - 50px", backgroundColor: "#546434" }}>
+      <div className="right" style={{ width: "350px", backgroundColor: "#f00" }}>
+        <div className="chatMessagesContainer" style={{ height: "calc(100% - 50px", backgroundColor: "#546434", overflow: "scroll" }}>
           {this.state.messages.map(msg => {
             return <div key={msg.body} style={{borderBottom: "1px solid #000000", padding: "10px"}}>
               <h4 style={{margin: "0"}}>{msg.sender}</h4>
