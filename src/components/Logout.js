@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { logout } from '../actions/userActions'
 import { withRouter } from 'react-router'
+import { Button } from '@material-ui/core'
 
 class Logout extends Component {
 
@@ -12,7 +13,7 @@ class Logout extends Component {
 
   render() {
     return <div>
-      <button onClick={this.onClick}>Log out</button>
+      <Button color="inherit" onClick={this.onClick}>Log out</Button>
     </div>
   }
 }

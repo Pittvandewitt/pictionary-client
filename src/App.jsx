@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
 import { connect } from 'react-redux'
 import { USER_LOGIN } from './actions/userActions'
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import useStyles from './styles'
+import { AppBar, Toolbar } from '@material-ui/core';
+import Login from './components/Login';
 import SignupFormContainer from './components/SignupFormContainer';
 import LoginFormContainer from './components/LoginFormContainer';
 import Logout from './components/Logout';
 import LobbyContainer from './components/LobbyContainer';
+import Home from './components/Home';
 
 class App extends Component {
 
@@ -30,26 +33,38 @@ class App extends Component {
   }
 
   render() {
-    return <div>
+    const classes = this.props.classes;
+    return <div className={!this.props.user.jwt && 'css'}>
       <BrowserRouter>
-        <nav>
-          {this.props.user.jwt && <Logout />}
-          {!this.props.user.jwt && <Route path="/signup" component={SignupFormContainer} />}
-          <Route path="/login" component={LoginFormContainer} />
-          <Route path="/gameroom/:name" />
-        </nav>
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar>
+            {this.props.user.jwt ? <Logout /> : <Login />}
+          </Toolbar>
+        </AppBar>
+
+        <Route path="/login" component={LoginFormContainer} />
+        <Route path="/signup" component={SignupFormContainer} />
+        <Route path="/gameroom/:name" />
 
         {this.props.user.jwt ?
-          <Route exact path="/" component={LobbyContainer} /> : 
-          <Redirect to='/signup' />}
+          <Route exact path="/" component={LobbyContainer} /> :
+          <Route exact path="/" component={Home} />}
       </BrowserRouter>
-
     </div>
   }
 }
+
+App = withStyles(App)
 
 const mapStateToProps = (props) => {
   return { user: props.user }
 }
 
 export default connect(mapStateToProps)(App);
+
+function withStyles(Component) {
+  return function WrappedComponent(props) {
+    const classes = useStyles();
+    return <Component {...props} classes={classes} />;
+  }
+}

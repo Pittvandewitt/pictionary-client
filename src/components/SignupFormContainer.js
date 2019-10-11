@@ -30,10 +30,6 @@ export default class SignupFormContainer extends Component {
     this.setState(initialState)
   }
 
-  onClick = () => {
-    this.props.history.push('/login')
-  }
-
   render() {
     return (
       <div>
@@ -41,7 +37,6 @@ export default class SignupFormContainer extends Component {
           onChange={this.onChange}
           state={this.state}
           onSubmit={this.onSubmit} />
-          <button onClick={this.onClick}>Log in</button>
       </div>
     )
   }
