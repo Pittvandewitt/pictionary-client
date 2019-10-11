@@ -1,0 +1,15 @@
+.css {
+  background-image: url(https://i.pinimg.com/originals/cf/c2/69/cfc2699b81c8c238eb7bf92e44d2d558.jpg);
+  background-position: bottom right;
+  background-size: auto 100vh;
+  background-repeat: no-repeat;
+  height: 100vh;
+  overflow: auto
+}
+#root, body, html {
+  min-height: 100vh;
+}
+
+canvas {
+  border: 1px solid #000000
+}
