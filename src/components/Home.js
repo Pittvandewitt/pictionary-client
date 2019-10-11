@@ -22,15 +22,16 @@ export default class Home extends Component {
           fullWidth
           variant="contained"
           color="primary"
-          margin="normal"
-          className={classes.submit}>Sign up</Button>
+          style={{marginTop: "24px"}}
+          className={classes.button}>Sign up</Button>
         <Button
           onClick={this.login}
           fullWidth
           variant="contained"
           color="primary"
           margin="normal"
-          className={classes.submit}>Log in</Button>
+          style={{marginTop: "24px"}}
+          className={classes.button}>Log in</Button>
       </div>
     </Container>
   }
