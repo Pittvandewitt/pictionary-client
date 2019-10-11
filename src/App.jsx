@@ -10,6 +10,7 @@ import LoginFormContainer from './components/LoginFormContainer';
 import Logout from './components/Logout';
 import LobbyContainer from './components/LobbyContainer';
 import Home from './components/Home';
+import RoomContainer from './components/RoomContainer';
 
 class App extends Component {
 
@@ -44,7 +45,7 @@ class App extends Component {
 
         <Route path="/login" component={LoginFormContainer} />
         <Route path="/signup" component={SignupFormContainer} />
-        <Route path="/gameroom/:name" />
+        <Route path="/gameroom/:name" component={RoomContainer} />
 
         {this.props.user.jwt ?
           <Route exact path="/" component={LobbyContainer} /> :
