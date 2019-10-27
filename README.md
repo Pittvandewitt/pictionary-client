@@ -24,3 +24,7 @@ Make a playable game you think is fun.
 - Deploy to GitHub and Heroku regularly
 - Use Sequelize and REST, not typeORM and graphQL
 - Do not use alert, prompt, or document.getElementById
+
+# The game
+We decided to make a pictionary game with a live drawingboard and a chat. To make this possible, we used Socket.IO for the whole game part. Styling is been done with Material UI.
+The game supports multiple game rooms. Each room can have unlimited numbers of players. When a room is empty, the first player who joins the room is the drawer. The player who guesses the right answer will be the next drawer.
